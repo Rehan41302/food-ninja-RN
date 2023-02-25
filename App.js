@@ -1,15 +1,11 @@
 import "react-native-gesture-handler";
-import { View } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import { useFonts } from "expo-font";
-import * as SplashScreen from "expo-splash-screen";
 
 import CustomDrawer from "./navigation/CustomDrawer";
 
 const Stack = createStackNavigator();
-
-SplashScreen.preventAutoHideAsync();
 
 const App = () => {
   const [fontsLoaded] = useFonts({
@@ -19,16 +15,9 @@ const App = () => {
     "Poppins-Regular": require("./assets/fonts/Poppins-Regular.ttf"),
   });
 
-  const onLayoutRootView = useCallback(async () => {
-    if (fontsLoaded) {
-      await SplashScreen.hideAsync();
-    }
-  }, [fontsLoaded]);
-
   if (!fontsLoaded) return null;
 
   return (
-    <View onLayout={onLayoutRootView}>
       <NavigationContainer la>
         <Stack.Navigator
           screenOptions={{
@@ -39,7 +28,6 @@ const App = () => {
           <Stack.Screen name="Home" component={CustomDrawer} />
         </Stack.Navigator>
       </NavigationContainer>
-    </View>
   );
 };
 
