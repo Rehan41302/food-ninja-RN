@@ -7,7 +7,7 @@ import {
 import { useSelector, useDispatch } from "react-redux";
 
 import { selectNavigation, setSelectedTab } from "./slice";
-import MainLayout from "../screens/MainLayout";
+import { MainLayout } from "../screens";
 import {
   COLORS,
   SIZES,
