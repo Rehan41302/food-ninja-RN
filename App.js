@@ -2,8 +2,10 @@ import "react-native-gesture-handler";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import { useFonts } from "expo-font";
+import { Provider } from "react-redux";
 
 import CustomDrawer from "./navigation/CustomDrawer";
+import store from "./store";
 
 const Stack = createStackNavigator();
 
@@ -18,7 +20,8 @@ const App = () => {
   if (!fontsLoaded) return null;
 
   return (
-      <NavigationContainer la>
+    <Provider store={store}>
+      <NavigationContainer>
         <Stack.Navigator
           screenOptions={{
             headerShown: false,
@@ -28,6 +31,7 @@ const App = () => {
           <Stack.Screen name="Home" component={CustomDrawer} />
         </Stack.Navigator>
       </NavigationContainer>
+    </Provider>
   );
 };
 

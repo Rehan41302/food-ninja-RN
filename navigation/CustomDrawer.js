@@ -4,7 +4,9 @@ import {
   createDrawerNavigator,
   DrawerContentScrollView,
 } from "@react-navigation/drawer";
+import { useSelector, useDispatch } from "react-redux";
 
+import { selectNavigation, setSelectedTab } from "./slice";
 import MainLayout from "../screens/MainLayout";
 import {
   COLORS,
@@ -17,7 +19,7 @@ import {
 
 const Drawer = createDrawerNavigator();
 
-const CustomDrawerItem = ({ icon, label }) => (
+const CustomDrawerItem = ({ icon, label, isFocused, onPress }) => (
   <TouchableOpacity
     style={{
       flexDirection: "row",
@@ -26,9 +28,9 @@ const CustomDrawerItem = ({ icon, label }) => (
       alignItems: "center",
       paddingLeft: SIZES.radius,
       borderRadius: SIZES.base,
-      // backgroundColor
+      backgroundColor: isFocused ? COLORS.transparentBlack1 : null,
     }}
-    // onPress
+    onPress={onPress}
   >
     <Image
       source={icon}
@@ -41,6 +43,9 @@ const CustomDrawerItem = ({ icon, label }) => (
 );
 
 const CustomDrawerContent = ({ navigation }) => {
+  const { selectedTab } = useSelector(selectNavigation);
+  const dispatch = useDispatch();
+
   return (
     <DrawerContentScrollView
       scrollEnabled={true}
@@ -104,7 +109,15 @@ const CustomDrawerContent = ({ navigation }) => {
             marginTop: SIZES.padding,
           }}
         >
-          <CustomDrawerItem label={constants.screens.home} icon={icons.home} />
+          <CustomDrawerItem
+            label={constants.screens.home}
+            icon={icons.home}
+            isFocused={selectedTab === constants.screens.home}
+            onPress={() => {
+              dispatch(setSelectedTab(constants.screens.home));
+              navigation.navigate("MainLayout");
+            }}
+          />
           <CustomDrawerItem
             label={constants.screens.my_wallet}
             icon={icons.wallet}
@@ -112,14 +125,20 @@ const CustomDrawerContent = ({ navigation }) => {
           <CustomDrawerItem
             label={constants.screens.notification}
             icon={icons.notification}
+            isFocused={selectedTab === constants.screens.notification}
+            onPress={() => {
+              dispatch(setSelectedTab(constants.screens.notification));
+              navigation.navigate("MainLayout");
+            }}
           />
           <CustomDrawerItem
             label={constants.screens.favourite}
             icon={icons.favourite}
-          />
-          <CustomDrawerItem
-            label={constants.screens.favourite}
-            icon={icons.favourite}
+            isFocused={selectedTab === constants.screens.favourite}
+            onPress={() => {
+              dispatch(setSelectedTab(constants.screens.favourite));
+              navigation.navigate("MainLayout");
+            }}
           />
 
           {/* Line Divider */}
@@ -168,7 +187,7 @@ const CustomDrawer = () => {
             backgroundColor: "transparent",
           },
           sceneContainerStyle: {
-            // backgroundColor: "transparent",
+            backgroundColor: "transparent",
           },
         }}
         drawerContent={(props) => (
