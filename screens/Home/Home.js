@@ -11,6 +11,30 @@ import {
 import HorizintalFoodCard from "../../components/HorizintalFoodCard";
 import { FONTS, SIZES, COLORS, icons, dummyData } from "../../constants";
 
+const Section = ({ title, onPress, children }) => {
+  return (
+    <View>
+      <View
+        style={{
+          flexDirection: "row",
+          marginHorizontal: SIZES.padding,
+          marginTop: 30,
+          marginBottom: 20,
+        }}
+      >
+        <Text style={{ flex: 1, ...FONTS.h3 }}> {title} </Text>
+        <TouchableOpacity onPress={onPress}>
+          <Text style={{ color: COLORS.primary, ...FONTS.body3 }}>
+            Show All
+          </Text>
+        </TouchableOpacity>
+      </View>
+
+      {children}
+    </View>
+  );
+};
+
 const Home = () => {
   const [selectedCategoryId, setSelectedCategoryId] = useState(1);
   const [selectedMenuType, setSelectedMenuType] = useState(1);
@@ -116,7 +140,10 @@ const Home = () => {
         data={menuList}
         keyExtractor={(item) => `${item.id}`}
         showsVerticalScrollIndicator={false}
-        ListHeaderComponent={<View>{renderMenuTypes()}</View>}
+        ListHeaderComponent={
+        <View>
+          {renderMenuTypes()}
+          </View>}
         renderItem={({ item, index }) => (
           <HorizintalFoodCard
             containerStyle={{
