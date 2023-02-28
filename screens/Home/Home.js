@@ -39,6 +39,7 @@ const Home = () => {
   const [selectedCategoryId, setSelectedCategoryId] = useState(1);
   const [selectedMenuType, setSelectedMenuType] = useState(1);
   const [menuList, setMenuList] = useState([]);
+  const [recommends, setRecommends] = useState([]);
 
   useEffect(() => {
     handleChangeCategory(selectedCategoryId, selectedMenuType);
@@ -47,12 +48,20 @@ const Home = () => {
   // Handlers
 
   function handleChangeCategory(categoryId, menuTypeId) {
+    // Retreive recommended items
+    let selectedRecommend = dummyData.menu.find((a) => a.id === "Recommended");
+
     // Find the menu base on the menuTypeId
     let selectedMenu = dummyData.menu.find((a) => a.id === menuTypeId);
 
+    // Set the recommended menu base on the categoryId
+    setRecommends(
+      selectedRecommend?.list.filter((a) => a.categories.includes(categoryId))
+    );
+
     // Set the menu base on the categoryId
     setMenuList(
-      selectedMenu.list.filter((a) => a.categories.includes(categoryId))
+      selectedMenu?.list.filter((a) => a.categories.includes(categoryId))
     );
   }
 
@@ -130,6 +139,42 @@ const Home = () => {
     );
   }
 
+  function renderRecommendedSection() {
+    return (
+      <Section
+        title={"Recommended"}
+        onPress={() => console.log("Show all recommended")}
+      >
+        <FlatList
+          data={recommends}
+          keyExtractor={(item) => `${item.id}`}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          renderItem={({ item, index }) => (
+            <HorizintalFoodCard
+              containerStyle={{
+                height: 180,
+                width: SIZES.width * 0.85,
+                marginLeft: index === 0 ? SIZES.padding : 18,
+                marginRight:
+                  index === recommends.length - 1 ? SIZES.padding : 0,
+                paddingRight: SIZES.radius,
+                alignItems: "center",
+              }}
+              imageStyle={{
+                marginTop: 35,
+                height: 150,
+                width: 150,
+              }}
+              item={item}
+              onPress={() => console.log("HorizontalFoodCard")}
+            />
+          )}
+        />
+      </Section>
+    );
+  }
+
   return (
     <View style={{ flex: 1 }}>
       {/* Search */}
@@ -141,9 +186,11 @@ const Home = () => {
         keyExtractor={(item) => `${item.id}`}
         showsVerticalScrollIndicator={false}
         ListHeaderComponent={
-        <View>
-          {renderMenuTypes()}
-          </View>}
+          <View>
+            {renderRecommendedSection()}
+            {renderMenuTypes()}
+          </View>
+        }
         renderItem={({ item, index }) => (
           <HorizintalFoodCard
             containerStyle={{
