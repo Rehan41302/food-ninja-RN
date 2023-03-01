@@ -263,9 +263,34 @@ const Home = () => {
     );
   }
 
+  function renderDeliveryTo() {
+    return (
+      <View
+        style={{ marginTop: SIZES.padding, marginHorizontal: SIZES.padding }}
+      >
+        <Text style={{ color: COLORS.primary, ...FONTS.body3 }}>
+          DELIVERY TO
+        </Text>
+        <TouchableOpacity
+          style={{
+            flexDirection: "row",
+            marginTop: SIZES.base,
+            alignItems: "center",
+          }}
+        >
+          <Text style={{ ...FONTS.h3 }}>{dummyData.myProfile.address}</Text>
+          <Image
+            source={icons.down_arrow}
+            style={{ height: 20, width: 20, marginLeft: SIZES.base }}
+          />
+        </TouchableOpacity>
+      </View>
+    );
+  }
+
   return (
     // Tackle the bottom tabs height with marginBottom
-    <View style={{ flex: 1, marginBottom: 140 }}>
+    <View style={{ flex: 1  }}>
       {/* Search */}
       {renderSearch()}
 
@@ -276,6 +301,7 @@ const Home = () => {
         showsVerticalScrollIndicator={false}
         ListHeaderComponent={
           <View>
+            {renderDeliveryTo()}
             {rendeFoodCategorySection()}
             {renderPopularSection()}
             {renderRecommendedSection()}
@@ -299,6 +325,7 @@ const Home = () => {
             onPress={() => console.log("Horizontal Food Card")}
           />
         )}
+        ListFooterComponent={<View style={{ height: 150 }} />}
       />
     </View>
   );
