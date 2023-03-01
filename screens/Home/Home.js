@@ -49,7 +49,7 @@ const Home = () => {
 
   function handleChangeCategory(categoryId, menuTypeId) {
     // Retreive recommended items
-    let selectedRecommend = dummyData.menu.find((a) => a.id === "Recommended");
+    let selectedRecommend = dummyData.menu.find((a) => a.name === "Recommended");
 
     // Find the menu base on the menuTypeId
     let selectedMenu = dummyData.menu.find((a) => a.id === menuTypeId);
@@ -154,7 +154,6 @@ const Home = () => {
             <HorizintalFoodCard
               containerStyle={{
                 height: 180,
-                width: SIZES.width * 0.85,
                 marginLeft: index === 0 ? SIZES.padding : 18,
                 marginRight:
                   index === recommends.length - 1 ? SIZES.padding : 0,
@@ -176,7 +175,8 @@ const Home = () => {
   }
 
   return (
-    <View style={{ flex: 1 }}>
+    // Tackle the bottom tabs height with marginBottom
+    <View style={{ flex: 1, marginBottom: 140 }}> 
       {/* Search */}
       {renderSearch()}
 
