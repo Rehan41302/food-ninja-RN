@@ -9,6 +9,7 @@ import {
 } from "react-native";
 
 import HorizintalFoodCard from "../../components/HorizintalFoodCard";
+import VerticalFoodCard from "../../components/VerticalFoodCard";
 import { FONTS, SIZES, COLORS, icons, dummyData } from "../../constants";
 
 const Section = ({ title, onPress, children }) => {
@@ -40,6 +41,7 @@ const Home = () => {
   const [selectedMenuType, setSelectedMenuType] = useState(1);
   const [menuList, setMenuList] = useState([]);
   const [recommends, setRecommends] = useState([]);
+  const [popular, setPopular] = useState([]);
 
   useEffect(() => {
     handleChangeCategory(selectedCategoryId, selectedMenuType);
@@ -49,10 +51,20 @@ const Home = () => {
 
   function handleChangeCategory(categoryId, menuTypeId) {
     // Retreive recommended items
-    let selectedRecommend = dummyData.menu.find((a) => a.name === "Recommended");
+    let selectedPopular = dummyData.menu.find((a) => a.name === "Popular");
+
+    // Retreive recommended items
+    let selectedRecommend = dummyData.menu.find(
+      (a) => a.name === "Recommended"
+    );
 
     // Find the menu base on the menuTypeId
     let selectedMenu = dummyData.menu.find((a) => a.id === menuTypeId);
+
+    // Set the popular menu base on the categoryId
+    setPopular(
+      selectedPopular?.list.filter((a) => a.categories.includes(categoryId))
+    );
 
     // Set the recommended menu base on the categoryId
     setRecommends(
@@ -174,9 +186,35 @@ const Home = () => {
     );
   }
 
+  function renderPopularSection() {
+    return (
+      <Section
+        title={"Popular Near You"}
+        onPress={() => console.log("Show all Popular items")}
+      >
+        <FlatList
+          data={popular}
+          keyExtractor={(item) => `${item.id}`}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          renderItem={({ item, index }) => (
+            <VerticalFoodCard
+              containerStyle={{
+                marginLeft: index === 0 ? SIZES.padding : 18,
+                marginRight: index === popular.length - 1 ? SIZES.padding : 0,
+              }}
+              item={item}
+              onPress={() => console.log("PopularFoodCard")}
+            />
+          )}
+        />
+      </Section>
+    );
+  }
+
   return (
     // Tackle the bottom tabs height with marginBottom
-    <View style={{ flex: 1, marginBottom: 140 }}> 
+    <View style={{ flex: 1, marginBottom: 140 }}>
       {/* Search */}
       {renderSearch()}
 
@@ -187,6 +225,7 @@ const Home = () => {
         showsVerticalScrollIndicator={false}
         ListHeaderComponent={
           <View>
+            {renderPopularSection()}
             {renderRecommendedSection()}
             {renderMenuTypes()}
           </View>
