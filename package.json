@@ -9,6 +9,7 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@ptomasroos/react-native-multi-slider": "^2.2.2",
     "@react-navigation/drawer": "^6.6.1",
     "@react-navigation/native": "^6.1.4",
     "@react-navigation/stack": "^6.3.15",

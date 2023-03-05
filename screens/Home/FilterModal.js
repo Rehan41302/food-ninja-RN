@@ -8,7 +8,23 @@ import {
   Modal,
 } from "react-native";
 
+import IconButton from "../../components/IconButton";
+import TwoPointSlider from "../../components/TwoPointSlider";
 import { COLORS, FONTS, SIZES, constants, icons } from "../../constants";
+
+const Section = ({ containerStyle, title, children }) => {
+  return (
+    <View
+      style={{
+        marginTop: SIZES.padding,
+        ...containerStyle,
+      }}
+    >
+      <Text style={{ ...FONTS.h3 }}>{title}</Text>
+      {children}
+    </View>
+  );
+};
 
 const FilterModal = ({ isVisible, onClose }) => {
   const modalAnimatedValue = useRef(new Animated.Value(0)).current;
@@ -34,6 +50,20 @@ const FilterModal = ({ isVisible, onClose }) => {
     inputRange: [0, 1],
     outputRange: [SIZES.height, SIZES.height - 680],
   });
+
+  const renderDistance = () => (
+    <Section title="Distance">
+      <View style={{ alignItems: "center" }}>
+        <TwoPointSlider
+          values={[3, 10]}
+          min={1}
+          max={20}
+          postfix="km"
+          onValuesChange={(values) => console.log(values)}
+        />
+      </View>
+    </Section>
+  );
 
   return (
     <Modal animationType="fade" transparent={true} visible={isVisible}>
@@ -78,7 +108,26 @@ const FilterModal = ({ isVisible, onClose }) => {
             <Text style={{ flex: 1, ...FONTS.h3, fontSize: 18 }}>
               Filter Your Search
             </Text>
+            <IconButton
+              containerStyle={{
+                borderWidth: 2,
+                borderRadius: 10,
+                borderColor: COLORS.gray2,
+              }}
+              icon={icons.cross}
+              iconStyle={{ tintColor: COLORS.gray2 }}
+              onPress={() => setShowFilterModal(false)}
+            />
           </View>
+
+          <ScrollView
+            showsVerticalScrollIndicator={false}
+            contentContainerStyle={{
+              paddingBottom: 250,
+            }}
+          >
+            {renderDistance()}
+          </ScrollView>
         </Animated.View>
       </View>
     </Modal>
