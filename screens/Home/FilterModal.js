@@ -76,7 +76,7 @@ const FilterModal = ({ isVisible, onClose }) => {
         style={{
           flexDirection: "row",
           flexWrap: "wrap",
-          margin: SIZES.padding,
+          marginTop: SIZES.radius,
         }}
       >
         {constants.delivery_time.map((item, index) => (
@@ -104,7 +104,7 @@ const FilterModal = ({ isVisible, onClose }) => {
   );
 
   const renderPricingRange = () => (
-    <Section title="Pricing Range" containerStyle={{ marginTop: 40 }}>
+    <Section title="Pricing Range">
       <View style={{ alignItems: "center" }}>
         <TwoPointSlider
           values={[10, 50]}
@@ -120,8 +120,14 @@ const FilterModal = ({ isVisible, onClose }) => {
 
   const renderRatings = () => (
     <Section title="Ratings" containerStyle={{ marginTop: 40 }}>
-      <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-        {constants.ratings.map((item, map) => (
+      <View
+        style={{
+          flexDirection: "row",
+          justifyContent: "space-between",
+          marginTop: SIZES.radius,
+        }}
+      >
+        {constants.ratings.map((item, index) => (
           <TextIconButton
             key={`Ratings-${index}`}
             containerStyle={{
@@ -142,6 +148,39 @@ const FilterModal = ({ isVisible, onClose }) => {
               tintColor: item.id === ratings ? COLORS.white : COLORS.gray,
             }}
             onPress={() => setRatings(item.id)}
+          />
+        ))}
+      </View>
+    </Section>
+  );
+
+  const renderTags = () => (
+    <Section title="Tags">
+      <View
+        style={{
+          flexDirection: "row",
+          flexWrap: "wrap",
+          marginTop: SIZES.radius,
+        }}
+      >
+        {constants.tags.map((item, index) => (
+          <TextButton
+            key={`tags-${index}`}
+            label={item.label}
+            labelStyle={{
+              color: item.id === tags ? COLORS.white : COLORS.gray,
+              ...FONTS.body3,
+            }}
+            buttonContainerStyle={{
+              height: 50,
+              margin: 5,
+              paddingHorizontal: SIZES.padding,
+              alignItems: "center",
+              borderRadius: SIZES.base,
+              backgroundColor:
+                item.id === tags ? COLORS.primary : COLORS.lightGray2,
+            }}
+            onPress={() => setTags(item.id)}
           />
         ))}
       </View>
@@ -213,7 +252,30 @@ const FilterModal = ({ isVisible, onClose }) => {
             {renderDeliveryTime()}
             {renderPricingRange()}
             {renderRatings()}
+            {renderTags()}
           </ScrollView>
+          <View
+            style={{
+              position: "absolute",
+              bottom: 150,
+              left: 0,
+              right: 0,
+              height: 110,
+              paddingHorizontal: SIZES.padding,
+              paddingVertical: SIZES.radius,
+              backgroundColor: COLORS.white,
+            }}
+          >
+            <TextButton
+              label="Apply Filters"
+              buttonContainerStyle={{
+                height: 50,
+                borderRadius: SIZES.base,
+                backgroundColor: COLORS.primary,
+              }}
+              onPress={() => console.log("Apply Filters")}
+            />
+          </View>
         </Animated.View>
       </View>
     </Modal>
