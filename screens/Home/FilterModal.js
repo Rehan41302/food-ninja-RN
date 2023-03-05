@@ -9,6 +9,8 @@ import {
 } from "react-native";
 
 import IconButton from "../../components/IconButton";
+import TextButton from "../../components/TextButton";
+import TextIconButton from "../../components/TextIconButton";
 import TwoPointSlider from "../../components/TwoPointSlider";
 import { COLORS, FONTS, SIZES, constants, icons } from "../../constants";
 
@@ -29,6 +31,9 @@ const Section = ({ containerStyle, title, children }) => {
 const FilterModal = ({ isVisible, onClose }) => {
   const modalAnimatedValue = useRef(new Animated.Value(0)).current;
   const [showFilterModal, setShowFilterModal] = useState(isVisible);
+  const [deliveryTime, setDeliveryTime] = useState("");
+  const [ratings, setRatings] = useState("");
+  const [tags, setTags] = useState("");
 
   useEffect(() => {
     if (showFilterModal) {
@@ -61,6 +66,84 @@ const FilterModal = ({ isVisible, onClose }) => {
           postfix="km"
           onValuesChange={(values) => console.log(values)}
         />
+      </View>
+    </Section>
+  );
+
+  const renderDeliveryTime = () => (
+    <Section title="Delivery Time" containerStyle={{ marginTop: 40 }}>
+      <View
+        style={{
+          flexDirection: "row",
+          flexWrap: "wrap",
+          margin: SIZES.padding,
+        }}
+      >
+        {constants.delivery_time.map((item, index) => (
+          <TextButton
+            key={`delivery-time-${index}`}
+            label={item.label}
+            labelStyle={{
+              color: item.id === deliveryTime ? COLORS.white : COLORS.gray,
+              ...FONTS.body3,
+            }}
+            buttonContainerStyle={{
+              width: "30%",
+              height: 50,
+              margin: 5,
+              alignItems: "center",
+              borderRadius: SIZES.base,
+              backgroundColor:
+                item.id === deliveryTime ? COLORS.primary : COLORS.lightGray2,
+            }}
+            onPress={() => setDeliveryTime(item.id)}
+          />
+        ))}
+      </View>
+    </Section>
+  );
+
+  const renderPricingRange = () => (
+    <Section title="Pricing Range" containerStyle={{ marginTop: 40 }}>
+      <View style={{ alignItems: "center" }}>
+        <TwoPointSlider
+          values={[10, 50]}
+          min={1}
+          max={100}
+          prefix={"$"}
+          postfix=""
+          onValuesChange={(values) => console.log(values)}
+        />
+      </View>
+    </Section>
+  );
+
+  const renderRatings = () => (
+    <Section title="Ratings" containerStyle={{ marginTop: 40 }}>
+      <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+        {constants.ratings.map((item, map) => (
+          <TextIconButton
+            key={`Ratings-${index}`}
+            containerStyle={{
+              flex: 1,
+              height: 50,
+              margin: 5,
+              alignItems: "center",
+              borderRadius: SIZES.base,
+              backgroundColor:
+                item.id === ratings ? COLORS.primary : COLORS.lightGray2,
+            }}
+            label={item.label}
+            labelStyle={{
+              color: item.id === ratings ? COLORS.white : COLORS.gray,
+            }}
+            icon={icons.star}
+            iconStyle={{
+              tintColor: item.id === ratings ? COLORS.white : COLORS.gray,
+            }}
+            onPress={() => setRatings(item.id)}
+          />
+        ))}
       </View>
     </Section>
   );
@@ -127,6 +210,9 @@ const FilterModal = ({ isVisible, onClose }) => {
             }}
           >
             {renderDistance()}
+            {renderDeliveryTime()}
+            {renderPricingRange()}
+            {renderRatings()}
           </ScrollView>
         </Animated.View>
       </View>
