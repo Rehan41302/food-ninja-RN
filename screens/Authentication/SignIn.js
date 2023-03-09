@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { View, Text, Image, TouchableOpacity } from "react-native";
 
 import { AuthLayout } from "../";
+import CustomSwitch from "../../components/CustomSwitch";
 import FormInput from "../../components/FormInput";
 import { FONTS, SIZES, COLORS, icons } from "../../constants";
 import { utils } from "../../utils";
@@ -12,6 +13,7 @@ const SignIn = () => {
   const [emailError, setEmailError] = useState("");
 
   const [showPass, setShowPass] = useState(false);
+  const [saveMe, setSaveMe] = useState(false);
 
   return (
     <AuthLayout
@@ -71,6 +73,15 @@ const SignIn = () => {
         />
 
         {/* Save me & forget password */}
+        <View
+          style={{
+            flexDirection: "row",
+            marginTop: SIZES.radius,
+            justifyContent: "space-between",
+          }}
+        >
+          <CustomSwitch value={saveMe} onChange={(value) => setSaveMe(!value)} />
+        </View>
 
         {/* Sign In CTA */}
 
