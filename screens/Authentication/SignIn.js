@@ -4,16 +4,22 @@ import { View, Text, Image, TouchableOpacity } from "react-native";
 import { AuthLayout } from "../";
 import CustomSwitch from "../../components/CustomSwitch";
 import FormInput from "../../components/FormInput";
-import { FONTS, SIZES, COLORS, icons } from "../../constants";
+import TextButton from "../../components/TextButton";
+import TextIconButton from "../../components/TextIconButton";
+import { FONTS, SIZES, COLORS, icons, constants } from "../../constants";
 import { utils } from "../../utils";
 
-const SignIn = () => {
+const SignIn = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
 
   const [showPass, setShowPass] = useState(false);
   const [saveMe, setSaveMe] = useState(false);
+
+  function isEnableSignIn() {
+    return email !== "" && password !== "" && emailError === "";
+  }
 
   return (
     <AuthLayout
@@ -80,12 +86,85 @@ const SignIn = () => {
             justifyContent: "space-between",
           }}
         >
-          <CustomSwitch value={saveMe} onChange={(value) => setSaveMe(!value)} />
+          <CustomSwitch
+            value={saveMe}
+            onChange={(value) => setSaveMe(!value)}
+          />
+          <TextButton
+            label="Forgot Password"
+            buttonContainerStyle={{ backgroundColor: null }}
+            labelStyle={{ color: COLORS.gray, ...FONTS.body4 }}
+            onPress={() => navigation.navigate("ForgotPassword")}
+          />
         </View>
 
         {/* Sign In CTA */}
+        <TextButton
+          label="Sign In"
+          disabled={isEnableSignIn() ? false : true}
+          buttonContainerStyle={{
+            height: 55,
+            alignItems: "center",
+            marginTop: SIZES.padding,
+            borderRadius: SIZES.radius,
+            backgroundColor: isEnableSignIn()
+              ? COLORS.primary
+              : COLORS.transparentPrimray,
+          }}
+          onPress={() => console.log("Sign In")}
+        />
 
         {/* Go for SignUp */}
+        <View
+          style={{
+            flexDirection: "row",
+            marginTop: SIZES.radius,
+            justifyContent: "center",
+          }}
+        >
+          <Text style={{ color: COLORS.darkGray, ...FONTS.body3 }}>
+            Don't hanve an Account?
+          </Text>
+
+          <TextButton
+            label="Sign Up"
+            buttonContainerStyle={{ backgroundColor: null, marginLeft: 5 }}
+            labelStyle={{ color: COLORS.primary, ...FONTS.h3 }}
+            onPress={() => navigation.navigate("SignUp")}
+          />
+        </View>
+      </View>
+
+      <View style={{ marginTop: 100 }}>
+        <TextIconButton
+          label="Continue with Facebook"
+          containerStyle={{
+            height: 50,
+            alignItems: "center",
+            borderRadius: SIZES.radius,
+            backgroundColor: COLORS.blue,
+          }}
+          icon={icons.fb}
+          iconPosition="LEFT"
+          labelStyle={{ color: COLORS.white, marginLeft: SIZES.radius }}
+          iconStyle={{ tintColor: COLORS.white }}
+          onPress={() => console.log("Facebook SignIn")}
+        />
+        <TextIconButton
+          label="Continue with Google"
+          containerStyle={{
+            height: 50,
+            marginTop: SIZES.radius,
+            alignItems: "center",
+            borderRadius: SIZES.radius,
+            backgroundColor: COLORS.lightGray2,
+          }}
+          icon={icons.google}
+          iconPosition="LEFT"
+          labelStyle={{ marginLeft: SIZES.radius }}
+          iconStyle={{ tintColor: null }}
+          onPress={() => console.log("Google SignIn")}
+        />
       </View>
     </AuthLayout>
   );
