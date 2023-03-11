@@ -3,7 +3,7 @@ import { View, Text } from "react-native";
 import OTPInputView from "@twotalltotems/react-native-otp-input";
 
 import { AuthLayout } from "../";
-import { FONTS, SIZES, COLORS, icons } from "../../constants";
+import { FONTS, SIZES, COLORS } from "../../constants";
 import TextButton from "../../components/TextButton";
 
 const Otp = ({ navigation }) => {
