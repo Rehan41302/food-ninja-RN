@@ -5,7 +5,6 @@ import { AuthLayout } from "../";
 import FormInput from "../../components/FormInput";
 import TextButton from "../../components/TextButton";
 import TextIconButton from "../../components/TextIconButton";
-import CustomSwitch from "../../components/CustomSwitch";
 import { FONTS, SIZES, COLORS, icons } from "../../constants";
 import { utils } from "../../utils";
 
