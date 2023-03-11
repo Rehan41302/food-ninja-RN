@@ -111,7 +111,7 @@ const SignIn = ({ navigation }) => {
               ? COLORS.primary
               : COLORS.transparentPrimray,
           }}
-          onPress={() => console.log("Sign In")}
+          onPress={() => navigation.navigate("Home")}
         />
 
         {/* Go for SignUp */}
