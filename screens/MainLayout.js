@@ -312,6 +312,7 @@ export default function MainLayout({ navigation }) {
             right: 0,
             height: 100,
             borderTopLeftRadius: 15,
+            borderBottomLeftRadius: 15,
             borderTopRightRadius: 15,
           }}
         />
@@ -324,6 +325,7 @@ export default function MainLayout({ navigation }) {
             paddingHorizontal: SIZES.radius,
             paddingBottom: 5,
             borderTopLeftRadius: 20,
+            borderBottomLeftRadius: 20,
             borderTopRightRadius: 20,
             backgroundColor: COLORS.white,
           }}
