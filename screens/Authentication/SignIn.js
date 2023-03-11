@@ -123,7 +123,7 @@ const SignIn = ({ navigation }) => {
           }}
         >
           <Text style={{ color: COLORS.darkGray, ...FONTS.body3 }}>
-            Don't hanve an Account?
+            Don't have an Account?
           </Text>
 
           <TextButton
