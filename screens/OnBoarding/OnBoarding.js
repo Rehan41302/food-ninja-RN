@@ -65,7 +65,7 @@ const OnBoarding = ({ navigation }) => {
       <View
         style={{
           position: "absolute",
-          top: SIZES.height > 800 ? 50 : 25,
+          top: SIZES.height > 800 ? 20 : 10,
           left: 0,
           right: 0,
           alignItems: "center",

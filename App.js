@@ -21,6 +21,7 @@ import {
   Map,
 } from "./screens";
 import store from "./store";
+import { StatusBar } from "react-native";
 
 const Stack = createStackNavigator();
 
@@ -36,6 +37,7 @@ const App = () => {
 
   return (
     <Provider store={store}>
+      <StatusBar backgroundColor={"transparent"} barStyle="dark-content" translucent={true} />
       <NavigationContainer>
         <Stack.Navigator
           screenOptions={{
