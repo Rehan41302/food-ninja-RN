@@ -5,7 +5,21 @@ import { useFonts } from "expo-font";
 import { Provider } from "react-redux";
 
 import CustomDrawer from "./navigation/CustomDrawer";
-import { OnBoarding, SignIn, SignUp, ForgotPassword, Otp } from "./screens";
+import {
+  OnBoarding,
+  SignIn,
+  SignUp,
+  ForgotPassword,
+  Otp,
+  FoodDetail,
+  Checkout,
+  MyCart,
+  Success,
+  AddCard,
+  MyCard,
+  DeliveryStatus,
+  Map,
+} from "./screens";
 import store from "./store";
 
 const Stack = createStackNavigator();
@@ -27,14 +41,14 @@ const App = () => {
           screenOptions={{
             headerShown: false,
           }}
-          initialRouteName={"OnBoarding"}
+          initialRouteName={"Home"}
         >
           <Stack.Screen name="OnBoarding" component={OnBoarding} />
 
           <Stack.Screen name="SignIn" component={SignIn} />
 
           <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
-          
+
           <Stack.Screen name="SignUp" component={SignUp} />
 
           <Stack.Screen name="Otp" component={Otp} />

@@ -3,7 +3,12 @@ import { View, Text, TouchableOpacity, Image } from "react-native";
 
 import { COLORS, FONTS, SIZES, icons } from "../constants";
 
-const HorizintalFoodCard = ({ containerStyle, imageStyle, item, onPress }) => {
+const HorizintalFoodCard = ({
+  containerStyle,
+  imageStyle,
+  item,
+  onPress = () => {},
+}) => {
   return (
     <TouchableOpacity
       style={{
@@ -12,6 +17,7 @@ const HorizintalFoodCard = ({ containerStyle, imageStyle, item, onPress }) => {
         backgroundColor: COLORS.lightGray2,
         ...containerStyle,
       }}
+      onPress={onPress}
     >
       <Image source={item.image} style={imageStyle} />
       <View style={{ flex: 1 }}>
@@ -32,7 +38,9 @@ const HorizintalFoodCard = ({ containerStyle, imageStyle, item, onPress }) => {
         }}
       >
         <Image source={icons.calories} style={{ width: 30, height: 30 }} />
-        <Text style={{ color: COLORS.darkGray2, ...FONTS.body5 }}>{item.calories} Calories</Text>
+        <Text style={{ color: COLORS.darkGray2, ...FONTS.body5 }}>
+          {item.calories} Calories
+        </Text>
       </View>
     </TouchableOpacity>
   );

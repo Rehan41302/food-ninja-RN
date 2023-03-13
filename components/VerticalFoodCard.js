@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity, Image } from "react-native";
 
 import { COLORS, FONTS, SIZES, icons } from "../constants";
 
-const VerticalFoodCard = ({ containerStyle, item, onPress }) => {
+const VerticalFoodCard = ({ containerStyle, item, onPress = () => {} }) => {
   return (
     <TouchableOpacity
       style={{
@@ -14,6 +14,7 @@ const VerticalFoodCard = ({ containerStyle, item, onPress }) => {
         backgroundColor: COLORS.lightGray2,
         ...containerStyle,
       }}
+      onPress={onPress}
     >
       <View style={{ flexDirection: "row" }}>
         <View style={{ flex: 1, flexDirection: "row" }}>
