@@ -3,7 +3,7 @@ import { View, Text } from "react-native";
 
 import { FONTS } from "../constants";
 
-const Header = ({ title, containerStyle, leftComponent, rightComponent }) => {
+const Header = ({ title, titleStyle, containerStyle, leftComponent, rightComponent }) => {
   return (
     <View
       style={{
@@ -16,7 +16,7 @@ const Header = ({ title, containerStyle, leftComponent, rightComponent }) => {
 
       {/* Title */}
       <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-        <Text style={{ ...FONTS.h3 }}>{title}</Text>
+        <Text style={{ ...FONTS.h3, ...titleStyle }}>{title}</Text>
       </View>
 
       {/* Rigth */}

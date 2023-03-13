@@ -2,6 +2,7 @@ import React from "react";
 import { View, Text, Image, ScrollView, TouchableOpacity } from "react-native";
 
 import Header from "../../components/Header";
+import IconButton from "../../components/IconButton";
 import {
   FONTS,
   COLORS,
@@ -12,16 +13,10 @@ import {
 } from "../../constants";
 
 const FoodDetail = ({ navigation }) => {
-  return (
-    <View
-      style={{
-        flex: 1,
-        backgroundColor: COLORS.white,
-      }}
-    >
-      {/* Header */}
+  function renderHeader() {
+    return (
       <Header
-        title="Food Detail"
+        title="DETAILS"
         containerStyle={{
           height: 50,
           paddingHorizontal: SIZES.padding,
@@ -29,8 +24,8 @@ const FoodDetail = ({ navigation }) => {
           alignItems: "center",
         }}
         leftComponent={
-          <TouchableOpacity
-            style={{
+          <IconButton
+            containerStyle={{
               width: 40,
               height: 40,
               alignItems: "center",
@@ -39,14 +34,14 @@ const FoodDetail = ({ navigation }) => {
               borderColor: COLORS.gray2,
               borderRadius: SIZES.radius,
             }}
+            icon={icons.back}
+            iconStyle={{ width: 20, height: 20, tintColor: COLORS.gray }}
             onPress={() => navigation.goBack()}
-          >
-            <Image source={icons.back} style={{ width: 20, height: 20 }} />
-          </TouchableOpacity>
+          />
         }
         rightComponent={
-          <TouchableOpacity
-            style={{
+          <IconButton
+            containerStyle={{
               width: 40,
               height: 40,
               alignItems: "center",
@@ -54,14 +49,23 @@ const FoodDetail = ({ navigation }) => {
               borderRadius: SIZES.radius,
               backgroundColor: COLORS.transparentPrimray,
             }}
-          >
-            <Image
-              source={icons.cart}
-              style={{ width: 20, height: 20 }}
-            />
-          </TouchableOpacity>
+            icon={icons.cart}
+            iconStyle={{ width: 20, height: 20, tintColor: COLORS.gray }}
+          />
         }
       />
+    );
+  }
+
+  return (
+    <View
+      style={{
+        flex: 1,
+        backgroundColor: COLORS.white,
+      }}
+    >
+      {/* Header */}
+      {renderHeader()}
     </View>
   );
 };
