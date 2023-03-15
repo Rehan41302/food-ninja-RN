@@ -4,6 +4,8 @@ import { View, Text, Image, ScrollView, TouchableOpacity } from "react-native";
 import Header from "../../components/Header";
 import IconButton from "../../components/IconButton";
 import IconLabel from "../../components/IconLabel";
+import LineDivider from "../../components/LineDivider";
+import Rating from "../../components/Rating";
 import TextButton from "../../components/TextButton";
 import {
   FONTS,
@@ -249,6 +251,38 @@ const FoodDetail = ({ route, navigation }) => {
     );
   }
 
+  function renderResturant() {
+    return (
+      <View
+        style={{
+          flexDirection: "row",
+          marginVertical: SIZES.padding,
+          paddingHorizontal: SIZES.padding,
+          alignItems: "center",
+        }}
+      >
+        <Image
+          source={images.profile}
+          style={{ width: 50, height: 50, borderRadius: SIZES.radius }}
+        />
+        <View
+          style={{
+            flex: 1,
+            marginLeft: SIZES.radius,
+            justifyContent: "center",
+          }}
+        >
+          <Text style={{ ...FONTS.h3 }}>Micro Dev</Text>
+          <Text style={{ color: COLORS.gray, ...FONTS.body4 }}>
+            1.2 KM away from you
+          </Text>
+        </View>
+        
+        <Rating rating={4} iconStyle={{ marginLeft: 3 }} />
+      </View>
+    );
+  }
+
   return (
     <View
       style={{
@@ -264,6 +298,11 @@ const FoodDetail = ({ route, navigation }) => {
         <ScrollView>
           {/* Food Detail */}
           {renderDetails()}
+
+          <LineDivider />
+
+          {/* Resturant */}
+          {renderResturant()}
         </ScrollView>
       )}
     </View>
