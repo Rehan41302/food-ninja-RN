@@ -40,18 +40,44 @@ const FoodDetail = ({ navigation }) => {
           />
         }
         rightComponent={
-          <IconButton
-            containerStyle={{
-              width: 40,
-              height: 40,
-              alignItems: "center",
-              justifyContent: "center",
-              borderRadius: SIZES.radius,
-              backgroundColor: COLORS.transparentPrimray,
-            }}
-            icon={icons.cart}
-            iconStyle={{ width: 20, height: 20, tintColor: COLORS.gray }}
-          />
+          <View>
+            <IconButton
+              containerStyle={{
+                width: 40,
+                height: 40,
+                alignItems: "center",
+                justifyContent: "center",
+                borderRadius: SIZES.radius,
+                backgroundColor: COLORS.transparentPrimray,
+              }}
+              icon={icons.cart}
+              iconStyle={{ width: 20, height: 20, tintColor: COLORS.black }}
+            />
+            <View
+              style={{
+                position: "absolute",
+                top: 5,
+                right: 5,
+                height: 15,
+                width: 15,
+                alignItems: "center",
+                justifyContent: "center",
+                borderRadius: SIZES.radius,
+                backgroundColor: COLORS.primary,
+              }}
+            >
+              <Text
+                style={{
+                  ...FONTS.body3,
+                  lineHeight: 0,
+                  fontSize: 10,
+                  color: COLORS.white,
+                }}
+              >
+                10
+              </Text>
+            </View>
+          </View>
         }
       />
     );
