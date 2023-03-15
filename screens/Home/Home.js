@@ -37,7 +37,7 @@ const Section = ({ title, onPress, children }) => {
   );
 };
 
-const Home = () => {
+const Home = ({ navigation }) => {
   const [selectedCategoryId, setSelectedCategoryId] = useState(1);
   const [selectedMenuType, setSelectedMenuType] = useState(1);
   const [popular, setPopular] = useState([]);
@@ -179,7 +179,7 @@ const Home = () => {
                 width: 150,
               }}
               item={item}
-              onPress={() => console.log("HorizontalFoodCard")}
+              onPress={() =>  navigation.navigate('FoodDetail', { itemId: item.id })}
             />
           )}
         />
@@ -205,7 +205,7 @@ const Home = () => {
                 marginRight: index === popular.length - 1 ? SIZES.padding : 0,
               }}
               item={item}
-              onPress={() => console.log("PopularFoodCard")}
+              onPress={() =>  navigation.navigate('FoodDetail', { itemId: item.id })}
             />
           )}
         />
@@ -331,7 +331,7 @@ const Home = () => {
               width: 110,
             }}
             item={item}
-            onPress={() => console.log("Horizontal Food Card")}
+            onPress={() => navigation.navigate('FoodDetail', { itemId: item.id })}
           />
         )}
         ListFooterComponent={<View style={{ height: 150 }} />}
