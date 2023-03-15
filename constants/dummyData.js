@@ -28,7 +28,7 @@ const categories = [
 const hamburger = {
   id: 1,
   name: "Hamburger",
-  description: "Chicken patty hamburger",
+  description: "Duis excepteur exercitation non Lorem cupidatat pariatur enim sint id magna elit do et. Voluptate est fugiat anim quis veniam cillum ullamco elit sit. Ad elit consectetur ullamco officia laborum sit non amet in tempor amet commodo.",
   categories: [1, 2],
   price: 15.99,
   calories: 78,
@@ -39,7 +39,7 @@ const hamburger = {
 const hotTacos = {
   id: 2,
   name: "Hot Tacos",
-  description: "Mexican tortilla & tacos",
+  description: "Mexican tortilla & tacos with Eiusmod culpa consectetur cillum nostrud commodo velit voluptate. Incididunt consectetur nisi fugiat eu in magna dolor sint duis adipisicing nulla ea. Nisi enim cillum est anim cillum nostrud aliquip.",
   categories: [1, 3],
   price: 10.99,
   calories: 78,
@@ -50,7 +50,7 @@ const hotTacos = {
 const vegBiryani = {
   id: 3,
   name: "Veg Biryani",
-  description: "Indian Vegetable Biryani",
+  description: "Indian Vegetable Biryani with Aute non in non proident elit laborum sint sunt enim. Exercitation sint nisi enim irure labore qui qui deserunt quis. Sunt irure aliqua laborum et.",
   categories: [1, 2, 3],
   price: 10.99,
   calories: 78,
@@ -61,7 +61,7 @@ const vegBiryani = {
 const wrapSandwich = {
   id: 4,
   name: "Wrap Sandwich",
-  description: "Grilled vegetables sandwich",
+  description: "Grilled vegetables sandwich with Deserunt deserunt exercitation veniam ullamco amet. Eu dolor adipisicing ad sunt consequat consequat nisi consectetur ipsum dolore. Culpa nostrud nisi veniam culpa aliqua anim aliqua. Velit exercitation adipisicing anim magna aute consequat ut ullamco. Eiusmod deserunt amet veniam quis exercitation deserunt ullamco aliquip veniam laboris aliqua consectetur.",
   categories: [1, 2],
   price: 10.99,
   calories: 78,
