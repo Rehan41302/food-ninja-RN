@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, Image, ScrollView, TouchableOpacity } from "react-native";
+import { View, Text, Image, ScrollView } from "react-native";
 
 import Header from "../../components/Header";
 import IconButton from "../../components/IconButton";
 import IconLabel from "../../components/IconLabel";
 import LineDivider from "../../components/LineDivider";
 import Rating from "../../components/Rating";
+import StepperInput from "../../components/StepperInput";
 import TextButton from "../../components/TextButton";
 import {
   FONTS,
@@ -19,6 +20,7 @@ import {
 const FoodDetail = ({ route, navigation }) => {
   const [foodItem, setFoodItem] = useState(null);
   const [selectedSize, setSelectedSize] = useState("");
+  const [quantity, setQuantity] = useState(1);
 
   useEffect(() => {
     let itemId = route.params.itemId;
@@ -277,8 +279,43 @@ const FoodDetail = ({ route, navigation }) => {
             1.2 KM away from you
           </Text>
         </View>
-        
+
         <Rating rating={4} iconStyle={{ marginLeft: 3 }} />
+      </View>
+    );
+  }
+
+  function renderFooter() {
+    return (
+      <View
+        style={{
+          flexDirection: "row",
+          height: 120,
+          alignItems: "center",
+          paddingHorizontal: SIZES.padding,
+          paddingBottom: SIZES.radius,
+        }}
+      >
+        <StepperInput
+          value={quantity}
+          onAdd={() => setQuantity(quantity + 1)}
+          onMinus={() => {
+            if (quantity > 1) setQuantity(quantity - 1);
+          }}
+        />
+        <TextButton
+          buttonContainerStyle={{
+            flex: 1,
+            flexDirection: "row",
+            height: 60,
+            marginLeft: SIZES.radius,
+            paddingHorizontal: SIZES.radius,
+            borderRadius: SIZES.radius,
+            backgroundColor: COLORS.primary,
+          }}
+          label="Buy Now"
+          label2="$15.99"
+        />
       </View>
     );
   }
@@ -295,15 +332,21 @@ const FoodDetail = ({ route, navigation }) => {
 
       {/* Body */}
       {foodItem && (
-        <ScrollView>
-          {/* Food Detail */}
-          {renderDetails()}
+        <>
+          <ScrollView>
+            {/* Food Detail */}
+            {renderDetails()}
+
+            <LineDivider />
+
+            {/* Resturant */}
+            {renderResturant()}
+          </ScrollView>
 
           <LineDivider />
 
-          {/* Resturant */}
-          {renderResturant()}
-        </ScrollView>
+          {renderFooter()}
+        </>
       )}
     </View>
   );
