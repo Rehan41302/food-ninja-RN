@@ -58,6 +58,50 @@ const MyCard = ({ navigation }) => {
       </View>
     );
   }
+
+  function renderAddNewCard() {
+    return (
+      <View style={{ marginTop: SIZES.padding }}>
+        <Text style={{ ...FONTS.h3 }}>Add new card</Text>
+
+        {dummyData.allCards.map((item) => (
+          <CardItem
+            key={`NewCard-${item.id}`}
+            item={item}
+            isSelected={
+              `${selectedCard?.key}-${selectedCard?.id}` ===
+              `NewCard-${item.id}`
+            }
+            onPress={() => setSelectedCard({ ...item, key: "NewCard" })}
+          />
+        ))}
+      </View>
+    );
+  }
+
+  function renderFooter() {
+    return (
+      <View
+        style={{
+          paddingTop: SIZES.radius,
+          paddingBottom: SIZES.padding,
+          paddingHorizontal: SIZES.padding,
+        }}
+      >
+        <TextButton
+          label={selectedCard?.key === "NewCard" ? "Add" : "Place your Order"}
+          disabled={selectedCard === null}
+          buttonContainerStyle={{
+            height: 60,
+            borderRadius: SIZES.radius,
+            borderColor: COLORS.primary,
+            backgroundColor:
+              selectedCard === null ? COLORS.gray : COLORS.primary,
+          }}
+        />
+      </View>
+    );
+  }
   return (
     <View style={{ flex: 1, backgroundColor: COLORS.white }}>
       {renderHeader()}
@@ -74,7 +118,10 @@ const MyCard = ({ navigation }) => {
         {renderMyCards()}
 
         {/* Add new cards */}
+        {renderAddNewCard()}
       </ScrollView>
+
+      {renderFooter()}
     </View>
   );
 };
