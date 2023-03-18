@@ -94,7 +94,7 @@ const FoodDetail = ({ route, navigation }) => {
               <Text
                 style={{
                   ...FONTS.body3,
-                  lineHeight: 0,
+                  lineHeight: 14,
                   fontSize: 10,
                   color: COLORS.white,
                 }}
@@ -315,6 +315,7 @@ const FoodDetail = ({ route, navigation }) => {
           }}
           label="Buy Now"
           label2="$15.99"
+          onPress={() => navigation.navigate("MyCart")}
         />
       </View>
     );
