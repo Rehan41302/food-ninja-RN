@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { View, Text, Image, StyleSheet } from "react-native";
 import { SwipeListView } from "react-native-swipe-list-view";
+import FooterTotal from "../../components/FooterTotal";
 
 import Header from "../../components/Header";
 import IconButton from "../../components/IconButton";
@@ -16,6 +17,11 @@ const MyCart = ({ navigation }) => {
     let newMyCartList = myCartList.map((cl) =>
       cl.id === id ? { ...cl, qty: newQty } : cl
     );
+    setmyCartList(newMyCartList);
+  };
+
+  const removeMyCartHandler = (id) => {
+    let newMyCartList = myCartList.filter((cl) => cl.id !== id);
     setmyCartList(newMyCartList);
   };
 
@@ -160,6 +166,7 @@ const MyCart = ({ navigation }) => {
             }}
             icon={icons.delete_icon}
             iconStyle={{ marginRight: 10 }}
+            onPress={() => removeMyCartHandler(data.item.id)}
           />
         )}
       />
@@ -175,6 +182,12 @@ const MyCart = ({ navigation }) => {
       {renderCartList()}
 
       {/* footer */}
+      <FooterTotal
+        subTotal={37.97}
+        shippingfee={0.0}
+        total={37.97}
+        onPress={() => navigation.navigate("MyCard")}
+      />
     </View>
   );
 };
