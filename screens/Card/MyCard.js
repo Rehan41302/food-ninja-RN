@@ -98,6 +98,11 @@ const MyCard = ({ navigation }) => {
             backgroundColor:
               selectedCard === null ? COLORS.gray : COLORS.primary,
           }}
+          onPress={() => {
+            const nextScreen =
+              selectedCard?.key === "NewCard" ? "AddCard" : "Checkout";
+            navigation.navigate(nextScreen, { selectedCard: selectedCard });
+          }}
         />
       </View>
     );
