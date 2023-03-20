@@ -12,6 +12,7 @@ const FormInput = ({
   value = "",
   prependComponent,
   appendComponent,
+  maxLength,
   onChange,
   secureTextEntry,
   keyboardType = "default",
@@ -46,6 +47,7 @@ const FormInput = ({
           placeholderTextColor={COLORS.gray}
           secureTextEntry={secureTextEntry}
           keyboardType={keyboardType}
+          maxLength={maxLength}
           autoComplete={autoCompleteType}
           autoCapitalize={autoCapitalize}
           onChangeText={onChange}
