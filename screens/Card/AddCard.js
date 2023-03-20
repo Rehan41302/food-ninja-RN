@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, Image, ImageBackground } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import FormInput from "../../components/FormInput";
 
 import Header from "../../components/Header";
 import IconButton from "../../components/IconButton";
@@ -10,6 +11,16 @@ import { utils } from "../../utils";
 
 const AddCard = ({ navigation, route }) => {
   const [selectedCard, setSelectedCard] = useState(null);
+
+  const [cardNumber, setCardNumber] = useState("")
+  const [cardNumberError, setCardNumberError] = useState("")
+  const [cardName, setCardName] = useState("")
+  const [cardNameError, setCardNameError] = useState("")
+  const [expiryDate, setExpiryDate] = useState("")
+  const [expiryDateError, setExpiryDateError] = useState("")
+  const [cvv, setCvv] = useState("")
+  const [cvvError, setCvvError] = useState("")
+  const [isRemember, setIsRemember] = useState(false)
 
   useEffect(() => {
     let { selectedCard: card } = route.params;
@@ -80,13 +91,13 @@ const AddCard = ({ navigation, route }) => {
             paddingHorizontal: SIZES.padding,
           }}
         >
-          <Text style={{ color: COLORS.white, ...FONTS.h3 }}>Micro dev</Text>
+          <Text style={{ color: COLORS.white, ...FONTS.h3 }}>{cardName}</Text>
 
           <View style={{ flexDirection: "row" }}>
             <Text style={{ flex: 1, color: COLORS.white, ...FONTS.body3 }}>
-              123 123 123 1234
+              {cardNumber}
             </Text>
-            <Text style={{ colo: COLORS.white, ...FONTS.body3 }}>12/25</Text>
+            <Text style={{ colo: COLORS.white, ...FONTS.body3 }}>{expiryDate}</Text>
           </View>
         </View>
       </ImageBackground>
@@ -96,7 +107,12 @@ const AddCard = ({ navigation, route }) => {
   function renderForm() {
     return (
       <View style={{ marginTop: SIZES.padding * 2 }}>
-        
+        <FormInput 
+          label="Card Number"
+          keyboardType="number-pad"
+          value={cardNumber}
+          onChange={setCardNumber}
+        />
       </View>
     )
   }
