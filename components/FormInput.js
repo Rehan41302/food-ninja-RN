@@ -5,11 +5,14 @@ import { FONTS, SIZES, COLORS } from "../constants";
 
 const FormInput = ({
   containerStyle,
+  inputContainerStyle,
   label,
   placeholder,
   inputStyle,
+  value = "",
   prependComponent,
   appendComponent,
+  maxLength,
   onChange,
   secureTextEntry,
   keyboardType = "default",
@@ -32,16 +35,19 @@ const FormInput = ({
           marginTop: SIZES.base,
           borderRadius: SIZES.radius,
           backgroundColor: COLORS.lightGray2,
+          ...inputContainerStyle
         }}
       >
         {prependComponent}
 
         <TextInput
           style={{ flex: 1, ...inputStyle }}
+          value={value}
           placeholder={placeholder}
           placeholderTextColor={COLORS.gray}
           secureTextEntry={secureTextEntry}
           keyboardType={keyboardType}
+          maxLength={maxLength}
           autoComplete={autoCompleteType}
           autoCapitalize={autoCapitalize}
           onChangeText={onChange}
