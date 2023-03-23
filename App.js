@@ -43,7 +43,7 @@ const App = () => {
           screenOptions={{
             headerShown: false,
           }}
-          initialRouteName={"MyCard"}
+          initialRouteName={"Map"}
         >
           <Stack.Screen name="OnBoarding" component={OnBoarding} />
 
