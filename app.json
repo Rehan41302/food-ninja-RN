@@ -25,7 +25,12 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.rehansaeed.foodninja"
+      "package": "com.rehansaeed.foodninja",
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyDxmlreoXf65r06Sy6hRfmmgUTWo-FSp_A"
+        }
+      }
     },
     "web": {
       "favicon": "./assets/favicon.png"
