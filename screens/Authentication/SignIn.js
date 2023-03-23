@@ -32,6 +32,7 @@ const SignIn = ({ navigation }) => {
           label="Email"
           keyboardType="email-address"
           autoCompleteType="email"
+          value={email}
           errorMsg={emailError}
           onChange={(value) => {
             utils.validateEmail(value, setEmailError);
@@ -59,6 +60,7 @@ const SignIn = ({ navigation }) => {
           label="Password"
           secureTextEntry={!showPass}
           autoCompleteType="password"
+          value={password}
           onChange={setPassword}
           containerStyle={{ marginTop: SIZES.radius }}
           appendComponent={
